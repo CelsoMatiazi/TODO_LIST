@@ -10,6 +10,7 @@ import com.example.todolist.datasource.TaskDataSource
 
 class MainActivity : AppCompatActivity() {
 
+    var taskList = TaskDataSource.getList()
     private lateinit var binding: ActivityMainBinding
     private val adapter by lazy { TaskListAdapter() }
 
@@ -52,14 +53,17 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun updateList(){
-        val list = TaskDataSource.getList()
+        //val list = TaskDataSource.getList()
+        taskList = TaskDataSource.getList()
 
-        if(list.isEmpty()){
+        if(taskList.isEmpty()){
             binding.emptyView.emptyState.visibility = View.VISIBLE
         }else{
             binding.emptyView.emptyState.visibility = View.GONE
         }
-        adapter.submitList(list)
+
+        adapter.submitList(null)
+        adapter.submitList(taskList.toList())
     }
 
     companion object{

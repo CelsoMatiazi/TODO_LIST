@@ -3,8 +3,8 @@ package com.example.todolist.datasource
 import com.example.todolist.model.Task
 
 object TaskDataSource{
-    private val list = arrayListOf<Task>()
-    fun getList() = list.toList()
+    private val list = mutableListOf<Task>()
+    fun getList() = list
 
     fun insertTask(task: Task){
         if(task.id == 0){
